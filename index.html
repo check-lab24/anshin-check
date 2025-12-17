@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anshin Check｜副業リスク診断</title>
+  <meta name="description" content="副業・個人事業を始める前に、お金・契約・決済のリスクを3分でチェック。" />
+  <style>
+    :root{
+      /* Light + clean */
+      --bg1:#f8fafc;
+      --bg2:#eef2ff;
+      --card:#ffffff;
+      --text:#1f2937;   /* 黒すぎない */
+      --muted:#6b7280;
+      --border:#e5e7eb;
+
+      --accent:#6366f1;       /* indigo */
+      --accent-soft:#eef2ff;  /* pale indigo */
+      --good:#22c55e;
+      --good-soft:#dcfce7;
+      --warn:#f59e0b;
+      --warn-soft:#ffedd5;
+      --danger:#ef4444;
+      --danger-soft:#fee2e2;
+
+      --shadow: 0 10px 30px rgba(2,6,23,.08);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 15% 0%, rgba(99,102,241,.18), transparent 60%),
+        radial-gradient(800px 520px at 85% 10%, rgba(34,197,94,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+    }
+
+    .wrap{max-width:980px;margin:0 auto;padding:26px 16px 70px}
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:10px;
+      font-weight:800;letter-spacing:.2px;
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background:var(--accent)}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.7);
+      color:var(--muted);
+      font-weight:800;font-size:12px;
+      box-shadow: 0 6px 18px rgba(2,6,23,.04);
+    }
+
+    .card{
+      background:rgba(255,255,255,.92);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    h1{margin:0 0 10px;font-size:28px;line-height:1.25}
+    h2{margin:0 0 10px;font-size:18px;line-height:1.35}
+    p{margin:0 0 12px;color:var(--muted);line-height:1.8}
+
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .btn{
+      appearance:none;
+      border:1px solid var(--border);
+      background:#fff;
+      color:var(--text);
+      padding:12px 14px;border-radius:14px;
+      cursor:pointer;font-weight:900;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      transition:.12s transform, .12s box-shadow, .12s border-color, .12s background;
+      text-decoration:none;
+      min-height:44px;
+      box-shadow: 0 8px 20px rgba(2,6,23,.06);
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(99,102,241,.45)}
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(99,102,241,1), rgba(79,70,229,1));
+      border-color: rgba(99,102,241,.6);
+      color:#fff;
+      box-shadow: 0 12px 26px rgba(99,102,241,.25);
+    }
+    .btn.ghost{
+      background:rgba(255,255,255,.55);
+      box-shadow:none;
+    }
+    .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (min-width: 900px){
+      .grid{grid-template-columns: 1.05fr .95fr;}
+    }
+
+    .hero{padding:22px}
+    .hero b{color:var(--text)}
+    .footer{margin-top:14px;color:rgba(107,114,128,.95);font-size:12px;line-height:1.7}
+
+    /* Quiz */
+    .qwrap{padding:18px}
+    .qmeta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+    .progress{
+      height:10px;background:rgba(229,231,235,.85);
+      border-radius:999px;overflow:hidden;border:1px solid var(--border);
+      margin-top:10px;
+    }
+    .bar{
+      height:100%;width:0%;
+      background: linear-gradient(90deg, rgba(99,102,241,1), rgba(34,197,94,1));
+      transition:width .2s ease;
+    }
+    .qcard{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.8);
+      border-radius:16px;
+      padding:16px;
+      margin-top:14px;
+    }
+    .qtitle{
+      margin:0 0 10px;
+      font-size:20px;
+      font-weight:900;
+      color:var(--text);
+      letter-spacing:.2px;
+      line-height:1.5;
+    }
+    .choices{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+    .choice{
+      flex:1;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#f9fafb;
+      cursor:pointer;
+      font-weight:900;
+      min-height:46px;
+      color:var(--text);
+      transition:.12s transform, .12s border-color, .12s box-shadow, .12s background;
+    }
+    .choice:hover{transform:translateY(-1px);border-color:rgba(99,102,241,.45)}
+    .choice.yes.selected{
+      background: var(--danger-soft);
+      border-color: rgba(239,68,68,.7);
+      box-shadow: 0 0 0 3px rgba(239,68,68,.10) inset;
+    }
+    .choice.no.selected{
+      background: var(--good-soft);
+      border-color: rgba(34,197,94,.7);
+      box-shadow: 0 0 0 3px rgba(34,197,94,.10) inset;
+    }
+
+    .nav{display:flex;gap:10px;justify-content:space-between;margin-top:14px}
+    .small{font-size:12px}
+    .muted{color:var(--muted)}
+
+    /* Right info */
+    .list{margin:0;padding-left:18px;color:var(--muted);line-height:1.9}
+    .hr{height:1px;background:rgba(229,231,235,.9);margin:14px 0}
+    .warnBox{
+      border:1px solid rgba(99,102,241,.28);
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      border-radius:16px;
+      padding:14px;
+      color:var(--text);
+    }
+
+    /* Result */
+    .hide{display:none !important}
+    .resultHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 10px;border-radius:999px;
+      font-weight:1000;font-size:12px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.75);
+      box-shadow: 0 8px 18px rgba(2,6,23,.05);
+    }
+    .badge.low{border-color:rgba(34,197,94,.55); background: rgba(220,252,231,.85)}
+    .badge.mid{border-color:rgba(245,158,11,.55); background: rgba(255,237,213,.85)}
+    .badge.high{border-color:rgba(239,68,68,.55); background: rgba(254,226,226,.85)}
+
+    .callout{
+      border:1px solid rgba(99,102,241,.28);
+      background: rgba(99,102,241,.06);
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Anshin Check</span>
+        <span class="pill">副業初心者向け｜3分診断</span>
+      </div>
+      <span class="pill">安心して始めるためのチェック</span>
+    </div>
+
+    <!-- HOME -->
+    <div id="view-home" class="card hero">
+      <h1>その副業、このまま始めて本当に大丈夫？</h1>
+      <p>知らないまま進むと、後から「詰む」こともあります。<br/>
+        副業・個人事業を始める前に <b>お金・契約・決済のリスク</b>を3分でチェック。</p>
+
+      <div class="row" style="margin-top:12px">
+        <button class="btn primary" id="startBtn">3分で無料診断する</button>
+        <button class="btn ghost" id="resetBtn">最初からやり直す</button>
+      </div>
+
+      <div class="footer">
+        ※本診断は一般的な情報提供を目的としたもので、法務・税務等の専門的助言の代替ではありません。<br/>
+        ※個別具体の状況により対応は異なるため、必要に応じて専門家へご相談ください。
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div id="view-quiz" class="grid hide">
+      <div class="card qwrap">
+        <div class="qmeta">
+          <div class="pill"><span id="qCount">1</span>/<span id="qTotal">12</span> 問</div>
+          <div class="pill">YES = 1点</div>
+        </div>
+
+        <div class="progress">
+          <div class="bar" id="progressBar"></div>
+        </div>
+
+        <div class="qcard">
+          <div class="qtitle" id="qText">質問</div>
+
+          <div class="choices">
+            <button class="choice yes" id="btnYes">YES（当てはまる）</button>
+            <button class="choice no" id="btnNo">NO（当てはまらない）</button>
+          </div>
+
+          <div class="small muted" style="margin-top:10px">
+            迷ったら「今の自分に近い方」を選んでOK。
+          </div>
+        </div>
+
+        <div class="nav">
+          <button class="btn ghost" id="prevBtn">← 戻る</button>
+          <button class="btn" id="nextBtn">次へ →</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="pill">この診断で分かること</div>
+        <div class="hr"></div>
+        <ul class="list">
+          <li>副業を始める前に見落としがちな「詰みポイント」</li>
+          <li>お金の管理・契約・決済で起きがちなトラブル要因</li>
+          <li>今すぐやるべき最小ToDo</li>
+        </ul>
+
+        <div class="hr"></div>
+        <div class="warnBox">
+          <b>コツ：</b>副業は「準備」で9割決まります。<br/>
+          早く始めたいほど、まずはリスクを潰すのが最短ルートです。
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="view-result" class="card hide">
+      <div class="resultHead">
+        <div>
+          <div class="pill">無料診断結果</div>
+          <h1 style="margin-top:10px">あなたのリスク判定</h1>
+          <div class="muted">合計スコア：<span class="mono" id="scoreText">0</span> / 12</div>
+        </div>
+        <div class="badge" id="badge">判定</div>
+      </div>
+
+      <div class="hr"></div>
+      <div id="resultBody" class="muted" style="line-height:1.9"></div>
+      <div class="hr"></div>
+
+      <div class="callout">
+        <b>あなたの回答をもとに、今すぐ取るべき行動をまとめた詳細レポートを用意しています。</b>
+        <div class="row" style="margin-top:12px">
+          <a class="btn primary" id="payBtn" href="#" target="_blank" rel="noopener">詳細レポートを見る（¥1,480）</a>
+          <button class="btn ghost" id="backHomeBtn">トップへ戻る</button>
+        </div>
+        <div class="small muted" style="margin-top:10px">
+          ※決済後の案内ページ（サンクスページ）で詳細レポートの閲覧方法をご案内します。
+        </div>
+      </div>
+
+      <div class="footer" style="margin-top:14px">
+        ※本結果は一般的な傾向に基づくもので、必ずしも個別事例の結果を保証するものではありません。
+      </div>
+    </div>
+
+    <!-- THANKS -->
+    <div id="view-thanks" class="card hide">
+      <div class="pill">購入後ページ（サンクス）</div>
+      <h1 style="margin-top:10px">ご購入ありがとうございます</h1>
+      <p>このページは「決済完了後に表示する案内ページ」用です。<br/>
+         Squareの支払いリンク設定で <b>リダイレクトURL</b> にこのURLを指定してください。</p>
+
+      <div class="hr"></div>
+
+      <h2>詳細レポート（簡易版）</h2>
+      <p class="muted">まずは「今すぐやるべきこと」だけに絞って、迷わず前に進めるようにしています。</p>
+
+      <div class="warnBox" id="paidReport">
+        <b>副業・個人事業リスク診断｜詳細レポート</b><br/><br/>
+
+        <b>今すぐ見直すべきポイント</b>
+        <ul class="list">
+          <li>収入の受け取り口座を明確にする</li>
+          <li>副業用のお金の流れを整理する</li>
+          <li>契約・規約の「最低限見るべき箇所」を知る</li>
+          <li>トラブルが起きた時の相談先を決める</li>
+        </ul>
+
+        <b>今すぐやるToDo（初心者向け）</b>
+        <ul class="list">
+          <li><b>今日</b>：副業用の収入・支出口座を決める／利用する決済サービスを1つに絞る</li>
+          <li><b>今週</b>：契約・規約の重要ポイントを確認／副業内容を第三者に説明できるよう整理</li>
+          <li><b>始める前</b>：NG行動リストをチェック</li>
+        </ul>
+
+        <b>副業初心者がやりがちなNG行動</b>
+        <ul class="list">
+          <li>口約束だけで仕事を始める</li>
+          <li>規約を読まずに決済サービスを使う</li>
+          <li>困ったときに「なんとかなる」と放置する</li>
+        </ul>
+
+        <b>最後に</b><br/>
+        副業は「始める前の準備」で9割決まります。安心して一歩を踏み出してください。
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        <button class="btn" id="restartBtn">もう一度診断する</button>
+        <button class="btn ghost" id="copyBtn">このレポートをコピー</button>
+      </div>
+
+      <div class="footer">
+        ※“厳密な購入者判定”をする場合は、後から「メール送付」「ログイン」「合言葉」などを足すのが定番です（最初はこのままでOK）。
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    /***********************
+     * 設定：ここだけ変更！
+     ***********************/
+    const SQUARE_PAYMENT_URL = "https://square.link/u/XgG4f3lk"; // ←ここをあなたのSquare支払いリンクURLに置換
+    // サンクスページは同一HTML内の #thanks を使う想定。
+    // 公開URLが決まったら SquareのリダイレクトURL を「あなたのURL + #thanks」に。
+    // 例: https://yourdomain.com/#thanks
+
+    const QUESTIONS = [
+      "副業の収入を、どの口座で受け取るか決めていない",
+      "契約書や利用規約を、正直ほとんど読んでいない",
+      "「とりあえず始めてから考えよう」と思っている",
+      "売上が出た場合の税金について、よく分かっていない",
+      "請求書や領収書を出す予定がない",
+      "副業用と生活費の管理を分けるつもりがない",
+      "決済サービスの規約を確認したことがない",
+      "どこまでが「個人の責任」か分かっていない",
+      "トラブルが起きた時の相談先を決めていない",
+      "「みんなやってるから大丈夫」と思っている",
+      "副業内容を第三者に説明すると少し不安",
+      "失敗例やトラブル事例をほとんど調べていない"
+    ];
+
+    function verdict(score){
+      if(score <= 3) return "low";
+      if(score <= 7) return "mid";
+      return "high";
+    }
+
+    function verdictHTML(kind){
+      if(kind === "low"){
+        return `
+          <p><b>あなたは比較的安全な状態です。</b></p>
+          <p>ただし、副業は「知らなかった」だけで思わぬトラブルにつながることがあります。</p>
+          <p>今のうちに最低限のルールを整理しておくことで、安心してスタートできます。</p>
+        `;
+      }
+      if(kind === "mid"){
+        return `
+          <p><b>いくつか見直した方がよいポイントがあります。</b></p>
+          <p>今すぐ問題になるとは限りませんが、このまま進むと後から困る可能性があります。</p>
+          <p>始める前に<b>「やってはいけない行動」</b>を把握しておくことが大切です。</p>
+        `;
+      }
+      return `
+        <p><b>このまま副業を始めるのは、少し危険です。</b></p>
+        <p>多くの人が「何も知らずに始めた結果」トラブルや後悔を経験しています。</p>
+        <p>今ならまだ<b>取り返しがつく段階</b>です。先にリスクを潰しましょう。</p>
+      `;
+    }
+
+    let idx = 0;
+    let answers = new Array(QUESTIONS.length).fill(null);
+
+    const vHome = document.getElementById("view-home");
+    const vQuiz = document.getElementById("view-quiz");
+    const vResult = document.getElementById("view-result");
+    const vThanks = document.getElementById("view-thanks");
+
+    const startBtn = document.getElementById("startBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const qText = document.getElementById("qText");
+    const qCount = document.getElementById("qCount");
+    const qTotal = document.getElementById("qTotal");
+    const progressBar = document.getElementById("progressBar");
+
+    const btnYes = document.getElementById("btnYes");
+    const btnNo = document.getElementById("btnNo");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    const scoreText = document.getElementById("scoreText");
+    const badge = document.getElementById("badge");
+    const resultBody = document.getElementById("resultBody");
+    const payBtn = document.getElementById("payBtn");
+    const backHomeBtn = document.getElementById("backHomeBtn");
+
+    const restartBtn = document.getElementById("restartBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const paidReport = document.getElementById("paidReport");
+
+    qTotal.textContent = String(QUESTIONS.length);
+    payBtn.href = SQUARE_PAYMENT_URL;
+
+    function show(view){
+      [vHome, vQuiz, vResult, vThanks].forEach(v => v.classList.add("hide"));
+      view.classList.remove("hide");
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    function renderQuestion(){
+      qText.textContent = QUESTIONS[idx];
+      qCount.textContent = String(idx + 1);
+
+      const pct = ((idx) / (QUESTIONS.length)) * 100;
+      progressBar.style.width = `${pct}%`;
+
+      btnYes.classList.toggle("selected", answers[idx] === true);
+      btnNo.classList.toggle("selected", answers[idx] === false);
+
+      prevBtn.disabled = (idx === 0);
+      nextBtn.style.opacity = (answers[idx] !== null) ? 1 : .75;
+    }
+
+    function resetAll(){
+      idx = 0;
+      answers = new Array(QUESTIONS.length).fill(null);
+      progressBar.style.width = "0%";
+      renderQuestion();
+    }
+
+    function goHome(){ show(vHome); location.hash = "#"; }
+    function goQuiz(){ show(vQuiz); renderQuestion(); location.hash = "#quiz"; }
+
+    function calcScore(){
+      return answers.reduce((sum,a)=> sum + (a === true ? 1 : 0), 0);
+    }
+
+    function goResult(){
+      const score = calcScore();
+      const kind = verdict(score);
+
+      scoreText.textContent = String(score);
+
+      badge.className = "badge " + kind;
+      badge.textContent = (kind === "low") ? "低リスク" : (kind === "mid") ? "注意" : "高リスク";
+
+      resultBody.innerHTML = verdictHTML(kind);
+      progressBar.style.width = "100%";
+
+      show(vResult);
+      location.hash = "#result";
+    }
+
+    function goThanks(){
+      show(vThanks);
+      location.hash = "#thanks";
+    }
+
+    // Events
+    startBtn.addEventListener("click", ()=>{ resetAll(); goQuiz(); });
+    resetBtn.addEventListener("click", ()=>{ resetAll(); goHome(); });
+
+    btnYes.addEventListener("click", ()=>{ answers[idx] = true; renderQuestion(); });
+    btnNo.addEventListener("click", ()=>{ answers[idx] = false; renderQuestion(); });
+
+    prevBtn.addEventListener("click", ()=>{ if(idx>0) idx--; renderQuestion(); });
+    nextBtn.addEventListener("click", ()=>{
+      if(answers[idx] === null){ alert("YES / NO を選択してください。"); return; }
+      if(idx < QUESTIONS.length - 1){ idx++; renderQuestion(); }
+      else{ goResult(); }
+    });
+
+    backHomeBtn.addEventListener("click", ()=>goHome());
+    restartBtn.addEventListener("click", ()=>{ resetAll(); goQuiz(); });
+
+    copyBtn.addEventListener("click", async ()=>{
+      const text = paidReport.innerText.trim();
+      try{
+        await navigator.clipboard.writeText(text);
+        alert("レポートをコピーしました！");
+      }catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        alert("レポートをコピーしました！");
+      }
+    });
+
+    function route(){
+      const h = (location.hash || "#").replace("#","");
+      if(h === "quiz"){ show(vQuiz); renderQuestion(); return; }
+      if(h === "thanks"){ goThanks(); return; }
+      if(h === "result"){
+        if(answers.every(a=>a===null)){ goHome(); return; }
+        goResult(); return;
+      }
+      goHome();
+    }
+    window.addEventListener("hashchange", route);
+    route();
+  </script>
+</body>
+</html>
