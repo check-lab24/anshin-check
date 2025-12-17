@@ -4,30 +4,18 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Anshin Check｜副業リスク診断</title>
-  <meta name="description" content="副業・個人事業を始める前に、お金・契約・決済のリスクを3分でチェック。" />
+  <meta name="description" content="副業・個人事業を始める前に、お金・契約・決済・税金のリスクを3分でチェック。" />
   <style>
     :root{
-      /* Light + clean */
-      --bg1:#f8fafc;
-      --bg2:#eef2ff;
-      --card:#ffffff;
-      --text:#1f2937;   /* 黒すぎない */
-      --muted:#6b7280;
-      --border:#e5e7eb;
-
-      --accent:#6366f1;       /* indigo */
-      --accent-soft:#eef2ff;  /* pale indigo */
-      --good:#22c55e;
-      --good-soft:#dcfce7;
-      --warn:#f59e0b;
-      --warn-soft:#ffedd5;
-      --danger:#ef4444;
-      --danger-soft:#fee2e2;
-
+      --bg1:#f8fafc; --bg2:#eef2ff; --card:#ffffff;
+      --text:#1f2937; --muted:#6b7280; --border:#e5e7eb;
+      --accent:#6366f1; --accent-soft:#eef2ff;
+      --good:#22c55e; --good-soft:#dcfce7;
+      --warn:#f59e0b; --warn-soft:#ffedd5;
+      --danger:#ef4444; --danger-soft:#fee2e2;
       --shadow: 0 10px 30px rgba(2,6,23,.08);
       --radius: 18px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -39,16 +27,9 @@
         radial-gradient(800px 520px at 85% 10%, rgba(34,197,94,.10), transparent 55%),
         linear-gradient(180deg, var(--bg1), var(--bg2));
     }
-
     .wrap{max-width:980px;margin:0 auto;padding:26px 16px 70px}
-    .topbar{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-    .brand{
-      display:flex;align-items:center;gap:10px;
-      font-weight:800;letter-spacing:.2px;
-    }
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.2px}
     .dot{width:10px;height:10px;border-radius:999px;background:var(--accent)}
     .pill{
       display:inline-flex;align-items:center;gap:8px;
@@ -59,7 +40,6 @@
       font-weight:800;font-size:12px;
       box-shadow: 0 6px 18px rgba(2,6,23,.04);
     }
-
     .card{
       background:rgba(255,255,255,.92);
       border:1px solid var(--border);
@@ -68,23 +48,19 @@
       box-shadow:var(--shadow);
       backdrop-filter: blur(10px);
     }
-
     h1{margin:0 0 10px;font-size:28px;line-height:1.25}
     h2{margin:0 0 10px;font-size:18px;line-height:1.35}
+    h3{margin:0 0 10px;font-size:16px;line-height:1.35}
     p{margin:0 0 12px;color:var(--muted);line-height:1.8}
-
     .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
     .btn{
-      appearance:none;
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--text);
+      appearance:none;border:1px solid var(--border);
+      background:#fff;color:var(--text);
       padding:12px 14px;border-radius:14px;
       cursor:pointer;font-weight:900;
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
       transition:.12s transform, .12s box-shadow, .12s border-color, .12s background;
-      text-decoration:none;
-      min-height:44px;
+      text-decoration:none;min-height:44px;
       box-shadow: 0 8px 20px rgba(2,6,23,.06);
     }
     .btn:hover{transform:translateY(-1px);border-color:rgba(99,102,241,.45)}
@@ -94,96 +70,43 @@
       color:#fff;
       box-shadow: 0 12px 26px rgba(99,102,241,.25);
     }
-    .btn.ghost{
-      background:rgba(255,255,255,.55);
-      box-shadow:none;
-    }
+    .btn.ghost{background:rgba(255,255,255,.55);box-shadow:none}
     .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
-
-    .grid{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:14px;
-      margin-top:14px;
-    }
-    @media (min-width: 900px){
-      .grid{grid-template-columns: 1.05fr .95fr;}
-    }
+    .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+    @media (min-width: 900px){ .grid{grid-template-columns: 1.05fr .95fr;} }
 
     .hero{padding:22px}
     .hero b{color:var(--text)}
     .footer{margin-top:14px;color:rgba(107,114,128,.95);font-size:12px;line-height:1.7}
 
-    /* Quiz */
     .qwrap{padding:18px}
     .qmeta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-    .progress{
-      height:10px;background:rgba(229,231,235,.85);
-      border-radius:999px;overflow:hidden;border:1px solid var(--border);
-      margin-top:10px;
-    }
-    .bar{
-      height:100%;width:0%;
-      background: linear-gradient(90deg, rgba(99,102,241,1), rgba(34,197,94,1));
-      transition:width .2s ease;
-    }
-    .qcard{
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.8);
-      border-radius:16px;
-      padding:16px;
-      margin-top:14px;
-    }
-    .qtitle{
-      margin:0 0 10px;
-      font-size:20px;
-      font-weight:900;
-      color:var(--text);
-      letter-spacing:.2px;
-      line-height:1.5;
-    }
+    .progress{height:10px;background:rgba(229,231,235,.85);border-radius:999px;overflow:hidden;border:1px solid var(--border);margin-top:10px}
+    .bar{height:100%;width:0%;background: linear-gradient(90deg, rgba(99,102,241,1), rgba(34,197,94,1));transition:width .2s ease}
+    .qcard{border:1px solid var(--border);background:rgba(255,255,255,.8);border-radius:16px;padding:16px;margin-top:14px}
+    .qtitle{margin:0 0 10px;font-size:20px;font-weight:900;color:var(--text);letter-spacing:.2px;line-height:1.5}
     .choices{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
     .choice{
-      flex:1;
-      padding:12px 12px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:#f9fafb;
-      cursor:pointer;
-      font-weight:900;
-      min-height:46px;
-      color:var(--text);
+      flex:1;padding:12px 12px;border-radius:14px;border:1px solid var(--border);
+      background:#f9fafb;cursor:pointer;font-weight:900;min-height:46px;color:var(--text);
       transition:.12s transform, .12s border-color, .12s box-shadow, .12s background;
     }
     .choice:hover{transform:translateY(-1px);border-color:rgba(99,102,241,.45)}
-    .choice.yes.selected{
-      background: var(--danger-soft);
-      border-color: rgba(239,68,68,.7);
-      box-shadow: 0 0 0 3px rgba(239,68,68,.10) inset;
-    }
-    .choice.no.selected{
-      background: var(--good-soft);
-      border-color: rgba(34,197,94,.7);
-      box-shadow: 0 0 0 3px rgba(34,197,94,.10) inset;
-    }
-
+    .choice.yes.selected{background: var(--danger-soft);border-color: rgba(239,68,68,.7);box-shadow: 0 0 0 3px rgba(239,68,68,.10) inset}
+    .choice.no.selected{background: var(--good-soft);border-color: rgba(34,197,94,.7);box-shadow: 0 0 0 3px rgba(34,197,94,.10) inset}
     .nav{display:flex;gap:10px;justify-content:space-between;margin-top:14px}
     .small{font-size:12px}
     .muted{color:var(--muted)}
 
-    /* Right info */
     .list{margin:0;padding-left:18px;color:var(--muted);line-height:1.9}
     .hr{height:1px;background:rgba(229,231,235,.9);margin:14px 0}
     .warnBox{
       border:1px solid rgba(99,102,241,.28);
       background: var(--accent-soft);
       border-left: 4px solid var(--accent);
-      border-radius:16px;
-      padding:14px;
-      color:var(--text);
+      border-radius:16px;padding:14px;color:var(--text);
     }
 
-    /* Result */
     .hide{display:none !important}
     .resultHead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .badge{
@@ -198,20 +121,26 @@
     .badge.mid{border-color:rgba(245,158,11,.55); background: rgba(255,237,213,.85)}
     .badge.high{border-color:rgba(239,68,68,.55); background: rgba(254,226,226,.85)}
 
-    .callout{
-      border:1px solid rgba(99,102,241,.28);
-      background: rgba(99,102,241,.06);
-      border-radius:16px;
-      padding:14px;
-    }
-
+    .callout{border:1px solid rgba(99,102,241,.28);background: rgba(99,102,241,.06);border-radius:16px;padding:14px}
     .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+
+    /* Paid report */
+    .reportTitle{margin:0 0 10px;font-size:20px;font-weight:1000}
+    .section{padding:14px;border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,.75);margin-top:12px}
+    .kicker{display:inline-flex;align-items:center;gap:8px;font-weight:900;font-size:12px;border:1px solid var(--border);background:#fff;border-radius:999px;padding:6px 10px}
+    .tagLow{border-color:rgba(34,197,94,.45);background:rgba(220,252,231,.7)}
+    .tagMid{border-color:rgba(245,158,11,.45);background:rgba(255,237,213,.7)}
+    .tagHigh{border-color:rgba(239,68,68,.45);background:rgba(254,226,226,.7)}
+    .checklist{margin:8px 0 0;padding-left:18px;color:var(--muted);line-height:1.95}
+    .note{font-size:12px;color:var(--muted);line-height:1.7}
+    .boxGood{border:1px solid rgba(34,197,94,.25);background:rgba(220,252,231,.55)}
+    .boxWarn{border:1px solid rgba(245,158,11,.25);background:rgba(255,237,213,.55)}
+    .boxBad{border:1px solid rgba(239,68,68,.22);background:rgba(254,226,226,.55)}
   </style>
 </head>
 
 <body>
   <div class="wrap">
-
     <div class="topbar">
       <div class="brand">
         <span class="dot"></span>
@@ -225,7 +154,7 @@
     <div id="view-home" class="card hero">
       <h1>その副業、このまま始めて本当に大丈夫？</h1>
       <p>知らないまま進むと、後から「詰む」こともあります。<br/>
-        副業・個人事業を始める前に <b>お金・契約・決済のリスク</b>を3分でチェック。</p>
+        副業・個人事業を始める前に <b>お金・契約・決済・税金</b>のリスクを3分でチェック。</p>
 
       <div class="row" style="margin-top:12px">
         <button class="btn primary" id="startBtn">3分で無料診断する</button>
@@ -252,15 +181,11 @@
 
         <div class="qcard">
           <div class="qtitle" id="qText">質問</div>
-
           <div class="choices">
             <button class="choice yes" id="btnYes">YES（当てはまる）</button>
             <button class="choice no" id="btnNo">NO（当てはまらない）</button>
           </div>
-
-          <div class="small muted" style="margin-top:10px">
-            迷ったら「今の自分に近い方」を選んでOK。
-          </div>
+          <div class="small muted" style="margin-top:10px">迷ったら「今の自分に近い方」でOK。</div>
         </div>
 
         <div class="nav">
@@ -277,7 +202,6 @@
           <li>お金の管理・契約・決済で起きがちなトラブル要因</li>
           <li>今すぐやるべき最小ToDo</li>
         </ul>
-
         <div class="hr"></div>
         <div class="warnBox">
           <b>コツ：</b>副業は「準備」で9割決まります。<br/>
@@ -302,18 +226,14 @@
       <div class="hr"></div>
 
       <div class="callout">
-        <b>あなたの回答をもとに、今すぐ取るべき行動をまとめた詳細レポートを用意しています。</b>
+        <b>あなたの回答をもとに、今すぐ取るべき行動をまとめた「詳細レポート（購入者限定）」を用意しています。</b>
         <div class="row" style="margin-top:12px">
           <a class="btn primary" id="payBtn" href="#" target="_blank" rel="noopener">詳細レポートを見る（¥1,480）</a>
           <button class="btn ghost" id="backHomeBtn">トップへ戻る</button>
         </div>
         <div class="small muted" style="margin-top:10px">
-          ※決済後の案内ページ（サンクスページ）で詳細レポートの閲覧方法をご案内します。
+          ※決済完了後、案内ページ（#thanks）に自動で戻る設定にできます。
         </div>
-      </div>
-
-      <div class="footer" style="margin-top:14px">
-        ※本結果は一般的な傾向に基づくもので、必ずしも個別事例の結果を保証するものではありません。
       </div>
     </div>
 
@@ -321,41 +241,13 @@
     <div id="view-thanks" class="card hide">
       <div class="pill">購入後ページ（サンクス）</div>
       <h1 style="margin-top:10px">ご購入ありがとうございます</h1>
-      <p>このページは「決済完了後に表示する案内ページ」用です。<br/>
-         Squareの支払いリンク設定で <b>リダイレクトURL</b> にこのURLを指定してください。</p>
+      <p>このページに「購入者限定レポート」が表示されます。<br/>
+        ※診断をしてから購入すると、あなたの判定に合わせた内容になります。</p>
 
       <div class="hr"></div>
 
-      <h2>詳細レポート（簡易版）</h2>
-      <p class="muted">まずは「今すぐやるべきこと」だけに絞って、迷わず前に進めるようにしています。</p>
-
-      <div class="warnBox" id="paidReport">
-        <b>副業・個人事業リスク診断｜詳細レポート</b><br/><br/>
-
-        <b>今すぐ見直すべきポイント</b>
-        <ul class="list">
-          <li>収入の受け取り口座を明確にする</li>
-          <li>副業用のお金の流れを整理する</li>
-          <li>契約・規約の「最低限見るべき箇所」を知る</li>
-          <li>トラブルが起きた時の相談先を決める</li>
-        </ul>
-
-        <b>今すぐやるToDo（初心者向け）</b>
-        <ul class="list">
-          <li><b>今日</b>：副業用の収入・支出口座を決める／利用する決済サービスを1つに絞る</li>
-          <li><b>今週</b>：契約・規約の重要ポイントを確認／副業内容を第三者に説明できるよう整理</li>
-          <li><b>始める前</b>：NG行動リストをチェック</li>
-        </ul>
-
-        <b>副業初心者がやりがちなNG行動</b>
-        <ul class="list">
-          <li>口約束だけで仕事を始める</li>
-          <li>規約を読まずに決済サービスを使う</li>
-          <li>困ったときに「なんとかなる」と放置する</li>
-        </ul>
-
-        <b>最後に</b><br/>
-        副業は「始める前の準備」で9割決まります。安心して一歩を踏み出してください。
+      <div id="paidReport" class="warnBox">
+        読み込み中…
       </div>
 
       <div class="hr"></div>
@@ -366,7 +258,7 @@
       </div>
 
       <div class="footer">
-        ※“厳密な購入者判定”をする場合は、後から「メール送付」「ログイン」「合言葉」などを足すのが定番です（最初はこのままでOK）。
+        ※“厳密な購入者判定（購入者だけに表示）”をする場合は、後から「メール送付」「合言葉」「ログイン」等を足すのが定番です（まずはこの形でOK）。
       </div>
     </div>
 
@@ -374,12 +266,9 @@
 
   <script>
     /***********************
-     * 設定：ここだけ変更！
+     * 設定：Squareリンク
      ***********************/
-    const SQUARE_PAYMENT_URL = "https://square.link/u/XgG4f3lk"; // ←ここをあなたのSquare支払いリンクURLに置換
-    // サンクスページは同一HTML内の #thanks を使う想定。
-    // 公開URLが決まったら SquareのリダイレクトURL を「あなたのURL + #thanks」に。
-    // 例: https://yourdomain.com/#thanks
+    const SQUARE_PAYMENT_URL = "https://square.link/u/XgG4f3lk";
 
     const QUESTIONS = [
       "副業の収入を、どの口座で受け取るか決めていない",
@@ -424,6 +313,213 @@
       `;
     }
 
+    /***********************
+     * Paid report generator
+     ***********************/
+    function paidTag(kind){
+      if(kind === "low") return `<span class="kicker tagLow">低リスク向け</span>`;
+      if(kind === "mid") return `<span class="kicker tagMid">注意向け</span>`;
+      return `<span class="kicker tagHigh">高リスク向け</span>`;
+    }
+
+    function getPaidReportHTML(kind, score){
+      const headline =
+        kind === "low" ? "今のうちに「型」を作れば、安心して伸ばせます。" :
+        kind === "mid" ? "始める前の小さな修正で、事故率が一気に下がります。" :
+                         "まずは“詰みポイント”を潰してからスタートが最短です。";
+
+      const boxClass =
+        kind === "low" ? "section boxGood" :
+        kind === "mid" ? "section boxWarn" :
+                         "section boxBad";
+
+      const today3 =
+        kind === "low" ? `
+          <ol class="checklist">
+            <li><b>口座の受け取り先</b>を決める（生活費口座とは分けるのが理想）</li>
+            <li><b>取引メモ</b>を作る（相手名／日付／金額／何の対価か）</li>
+            <li><b>決済サービスを1つ</b>に絞る（Squareで統一）</li>
+          </ol>` :
+        kind === "mid" ? `
+          <ol class="checklist">
+            <li><b>副業用のお金の流れ</b>を図にする（入金→経費→残る）</li>
+            <li><b>契約・規約の重要点</b>だけ読む（後述のチェックリスト）</li>
+            <li><b>税金の前提</b>を押さえる（収入と経費の考え方）</li>
+          </ol>` :
+        `
+          <ol class="checklist">
+            <li><b>受け取り口座と管理ルール</b>を今日決める（混ぜない）</li>
+            <li><b>契約なし／口約束</b>で始めない（テンプレ用意）</li>
+            <li><b>決済・返金ルール</b>を明文化（揉めるポイント先に潰す）</li>
+          </ol>`;
+
+      const day7Plan =
+        kind === "low" ? `
+          <ul class="checklist">
+            <li><b>Day1</b>：副業用の収入・支出の“置き場”を決める</li>
+            <li><b>Day2</b>：商品/サービスを1行で説明できる文章を作る</li>
+            <li><b>Day3</b>：価格・提供範囲・納期（いつ何を渡すか）を決める</li>
+            <li><b>Day4</b>：請求・領収のテンプレを作る（後述）</li>
+            <li><b>Day5</b>：返金/キャンセルの方針を決めて書く</li>
+            <li><b>Day6</b>：SNS投稿を1本作り、固定導線を貼る</li>
+            <li><b>Day7</b>：1件目のテスト販売（身内でもOK）</li>
+          </ul>` :
+        kind === "mid" ? `
+          <ul class="checklist">
+            <li><b>Day1</b>：お金の流れ（入金→経費→利益）を図にする</li>
+            <li><b>Day2</b>：契約の最低限（提供物/金額/納期/禁止事項）を文章化</li>
+            <li><b>Day3</b>：決済ルール（支払いタイミング/返金/領収）を決める</li>
+            <li><b>Day4</b>：経費になるもの・ならないものを整理してメモ</li>
+            <li><b>Day5</b>：トラブル時の連絡先（Square/消費者/専門家）を控える</li>
+            <li><b>Day6</b>：販売ページのFAQを5つ作る</li>
+            <li><b>Day7</b>：小さく販売開始（価格は変えてOK）</li>
+          </ul>` :
+        `
+          <ul class="checklist">
+            <li><b>Day1</b>：受け取り口座／管理ルールの確定（混ぜない）</li>
+            <li><b>Day2</b>：提供範囲・納期・返金条件を文章で固定</li>
+            <li><b>Day3</b>：契約テンプレ（または利用規約）を用意して必ず使う</li>
+            <li><b>Day4</b>：税金の前提（売上＝課税対象、経費＝根拠が必要）を整理</li>
+            <li><b>Day5</b>：決済/返金/問い合わせの導線を整備</li>
+            <li><b>Day6</b>：失敗例を10個読み、NG行動を先に潰す</li>
+            <li><b>Day7</b>：販売開始（“ルール付き”で）</li>
+          </ul>`;
+
+      const accident10 = `
+        <ul class="checklist">
+          <li>口約束だけで始めて「言った/言わない」になる</li>
+          <li>受け取り口座がバラバラで、入金管理が破綻する</li>
+          <li>生活費と混ぜて「何が利益か」分からなくなる</li>
+          <li>返金条件が曖昧で揉める（最頻出）</li>
+          <li>納期や提供範囲が曖昧で、追加要求が止まらない</li>
+          <li>領収/請求を求められて対応できない</li>
+          <li>規約違反（禁止商材/表現/返金対応）に気づかない</li>
+          <li>経費の証拠がなくて、確定申告で詰む</li>
+          <li>問い合わせ先が分からず、炎上/不安を放置する</li>
+          <li>「みんなやってる」で判断して、例外に刺さる</li>
+        </ul>`;
+
+      const checklistMoney = `
+        <ul class="checklist">
+          <li><b>受け取り口座</b>：最低でも“管理上”分ける（別口座が理想）</li>
+          <li><b>取引記録</b>：日付・相手・金額・何の対価かを残す</li>
+          <li><b>経費</b>：仕事のための支出だけ（説明できる根拠が必要）</li>
+          <li><b>領収/請求</b>：テンプレを用意（下に例あり）</li>
+          <li><b>利益</b>：売上 − 経費（これが“ざっくりの税金の土台”）</li>
+        </ul>`;
+
+      const checklistContract = `
+        <ul class="checklist">
+          <li><b>提供物</b>：何を渡す？（PDF/動画/相談/回数/範囲）</li>
+          <li><b>金額</b>：税込/税抜、追加料金の条件</li>
+          <li><b>納期</b>：いつまでに提供する？（日付で）</li>
+          <li><b>禁止</b>：転載は禁止配布・転載は禁止転載は禁止転載・共有禁止など</li>
+          <li><b>返金</b>：どの条件で返金する/しないか（最重要）</li>
+          <li><b>免責</b>：成果保証ではない、情報提供である、等</li>
+        </ul>`;
+
+      const checklistPayment = `
+        <ul class="checklist">
+          <li><b>決済手段</b>：Squareに統一（入金管理が楽）</li>
+          <li><b>返金</b>：返金可否・期限・手数料の扱いを明記</li>
+          <li><b>問い合わせ</b>：連絡先（メール等）と対応時間</li>
+          <li><b>納品</b>：いつ・どこで・何を見せるかを明記</li>
+          <li><b>規約</b>：禁止商材/表現/返金の扱いをざっと確認</li>
+        </ul>`;
+
+      const templates = `
+        <div class="section">
+          <h3>すぐ使えるテンプレ（コピペOK）</h3>
+          <p class="muted">初心者が一番困る「文章」を先に用意しておくと強いです。</p>
+
+          <div class="section">
+            <h3>① 取引メモ（自分用）</h3>
+            <div class="note">
+              日付：YYYY/MM/DD<br/>
+              相手：＿＿＿＿＿＿<br/>
+              内容：＿＿＿＿＿＿（何の対価か）<br/>
+              金額：＿＿＿＿円<br/>
+              受け取り：Square / 振込 等<br/>
+              納品予定：YYYY/MM/DD<br/>
+              返金条件：＿＿＿＿＿＿
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>② FAQ（販売ページに置く用）</h3>
+            <ul class="checklist">
+              <li>Q. 購入後は何が見られますか？ A. 判定に合わせた「具体ToDo」「チェックリスト」「事故回避リスト」が閲覧できます。</li>
+              <li>Q. 返金できますか？ A. （あなたの方針に合わせて記載）例：デジタル商品のため原則不可。ただし重複購入は対応。</li>
+              <li>Q. どれくらい時間がかかりますか？ A. 無料診断は約3分、レポート閲覧は約10分。</li>
+              <li>Q. 法務/税務の相談ですか？ A. 一般情報の提供で、必要に応じて専門家相談を推奨。</li>
+              <li>Q. 共有してもいい？ A. 個人利用のみ。転載は禁止配布・転載は禁止転載は禁止。</li>
+            </ul>
+          </div>
+        </div>`;
+
+      return `
+        <h2 class="reportTitle">購入者限定｜詳細レポート</h2>
+        <div class="row">
+          ${paidTag(kind)}
+          <span class="pill">あなたの診断スコア：<span class="mono">${score}</span>/12</span>
+        </div>
+
+        <div class="${boxClass}">
+          <h3>あなたへの一言</h3>
+          <p style="margin:0;color:var(--text);line-height:1.85"><b>${headline}</b></p>
+          <p class="note" style="margin-top:8px">※このレポートは「副業初心者がつまずきやすい論点」に絞って、今すぐ動ける形にまとめています。</p>
+        </div>
+
+        <div class="section">
+          <h3>今日やる3つ（最重要）</h3>
+          ${today3}
+        </div>
+
+        <div class="section">
+          <h3>7日プラン（これで“迷い”が消える）</h3>
+          ${day7Plan}
+        </div>
+
+        <div class="section">
+          <h3>よくある事故パターン10（避けるだけで価値がある）</h3>
+          ${accident10}
+        </div>
+
+        <div class="section">
+          <h3>チェックリスト：お金（口座・管理・税金の超基本）</h3>
+          ${checklistMoney}
+          <p class="note">ポイント：副業は「記録を残すだけ」で強くなります。面倒でも“最初に型”を作るのが最短。</p>
+        </div>
+
+        <div class="section">
+          <h3>チェックリスト：契約（揉める前に先に決める）</h3>
+          ${checklistContract}
+          <p class="note">ポイント：契約は法律用語より「提供範囲・納期・返金」を先に言語化するのが一番効きます。</p>
+        </div>
+
+        <div class="section">
+          <h3>チェックリスト：決済（Squareで統一して事故を減らす）</h3>
+          ${checklistPayment}
+          <p class="note">ポイント：決済は“買った人が不安にならない導線”が命。購入後の案内（#thanks）があるのは強いです。</p>
+        </div>
+
+        ${templates}
+
+        <div class="section">
+          <h3>次の一手（最短で売上に繋げる）</h3>
+          <ul class="checklist">
+            <li>販売導線は <b>1つ</b> に集中（まずはX固定ポスト）</li>
+            <li>最初の1週間は <b>改善より実測</b>（反応を見る）</li>
+            <li>購入者から「どこが良かった？」を1行でも回収</li>
+          </ul>
+          <p class="note">次にやると売上が伸びる：スコア別に「おすすめToDo」や「FAQ」を増やして、購入者満足を上げる。</p>
+        </div>
+      `;
+    }
+
+    /***********************
+     * State & DOM
+     ***********************/
     let idx = 0;
     let answers = new Array(QUESTIONS.length).fill(null);
 
@@ -467,7 +563,6 @@
     function renderQuestion(){
       qText.textContent = QUESTIONS[idx];
       qCount.textContent = String(idx + 1);
-
       const pct = ((idx) / (QUESTIONS.length)) * 100;
       progressBar.style.width = `${pct}%`;
 
@@ -497,18 +592,27 @@
       const kind = verdict(score);
 
       scoreText.textContent = String(score);
-
       badge.className = "badge " + kind;
       badge.textContent = (kind === "low") ? "低リスク" : (kind === "mid") ? "注意" : "高リスク";
 
       resultBody.innerHTML = verdictHTML(kind);
       progressBar.style.width = "100%";
 
+      // ★購入後ページ用に保存（個別感の核）
+      localStorage.setItem("anshin_kind", kind);
+      localStorage.setItem("anshin_score", String(score));
+
       show(vResult);
       location.hash = "#result";
     }
 
     function goThanks(){
+      // 診断後の判定を読む。なければmid扱い（決済後直行でも最低限表示できる）
+      const kind = localStorage.getItem("anshin_kind") || "mid";
+      const score = localStorage.getItem("anshin_score") || "?";
+      paidReport.classList.remove("boxGood","boxWarn","boxBad");
+      paidReport.innerHTML = getPaidReportHTML(kind, score);
+
       show(vThanks);
       location.hash = "#thanks";
     }
