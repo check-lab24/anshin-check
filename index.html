@@ -317,9 +317,11 @@
      * Paid report generator
      ***********************/
     function paidTag(kind){
-      if(kind === "low") return `<span class="kicker tagLow">低リスク向け</span>`;
-      if(kind === "mid") return `<span class="kicker tagMid">注意向け</span>`;
-      return `<span class="kicker tagHigh">高リスク向け</span>`;
+  if(kind === "low") return `<span class="kicker tagLow">安心スタートタイプ</span>`;
+  if(kind === "mid") return `<span class="kicker tagMid">要チェックタイプ</span>`;
+  return `<span class="kicker tagHigh">整備優先タイプ</span>`;
+}
+
     }
 
     function getPaidReportHTML(kind, score){
@@ -466,9 +468,9 @@
 
         <div class="${boxClass}">
           <h3>あなたへの一言</h3>
-          <p style="margin:0;color:var(--text);line-height:1.85"><b>${headline}</b></p>
-          <p class="note" style="margin-top:8px">※このレポートは「副業初心者がつまずきやすい論点」に絞って、今すぐ動ける形にまとめています。</p>
-        </div>
+　　　　　　<p style="margin:0;color:var(--text);line-height:1.85"><b>${headline}</b></p>
+　　　　　　</div>
+
 
         <div class="section">
           <h3>今日やる3つ（最重要）</h3>
